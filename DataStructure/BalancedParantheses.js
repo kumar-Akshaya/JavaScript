@@ -1,35 +1,45 @@
 var stackaccess=require('../DataStructure/Stack');
 var readline=require('readline-sync');
-var st=stackaccess.Stack;
+
 function Stack()
 {
-    var st=stackaccess.Stack;
+    var st= new stackaccess.Stack;
     var answer=readline.question("Enter your mathematical expression with parantheses ");
-   var ch=answer.charAt();
-   for(var i=0;i<=ch.length;i++)
-   {
-       if(ch[i]=='(' || ch[i]=='[' || ch[i]=='{')
+   var ch,i;
+   for(i=0;i<answer.length;i++)
+   {ch=answer.charAt(i);
+       if(ch=='(' || ch=='[' || ch=='{')
        {
-       st.push(ch[i]);
+       st.push(ch);
        }
        else{
-           switch (ch[i])
+           switch (ch)
            {
-               case ')':if(Pop()!='(')
+               case ')':if(st.pop()!='('){
+                                return false;
+                            }
+               case ']' : if(st.pop()!='[')
                {
-                   break;
+                   return false;
                }
-               case ']' : if(pop()!='[')
+               case '}' : if(st.pop()!='{')
                {
-                   break;
-               }
-               case '}' : if(pop()!='{')
-               {
-                   break;
+                   return false;
                }
            }
        }
+
    }
+   return true;
+}
+var bol=Stack();
+
+
+if(bol){
+    console.log("String is balanced");
     
 }
-Stack();
+else{
+    console.log("Not balanced");
+    }
+
