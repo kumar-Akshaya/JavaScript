@@ -137,19 +137,17 @@ module.exports = {
      */
     leapYear(year) {
         // ensure year is of four digit
-        if (year > 999 && year < 10000) {
+    
             //condition for checking leap 
             if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
-                console.log(year + "is Leap year");
+               return true;
             }
-            else {
-                console.log(year + " is not a leap year");
+            else{
+                return false;
             }
-        }
-        else {
-            console.log("Please, Enter 4 digit number");
-        }
-    },
+        },
+        
+
     /*
     *@purpose : generate the power of two values 
     *@param   : user input value
@@ -484,15 +482,10 @@ module.exports = {
         var x = y0 + Math.floor((y0 / 4)) - Math.floor((y0 / 100)) + Math.floor((y0 / 400));
         m0 = month + 12 * Math.floor((14 - month) / 12) - 2;
         var d0 = (day + x + Math.floor((31 * m0) / 12)) % 7;
-        console.log(d0);
-        //create array and compare with resultant value 
-        var res = ["Sunday", "Monday", "Tuesday", "Wendsday", "Thursday", "Friday", "saturday"];
-        if (d0 <= res.length) {
-            console.log("The day falls on :" + res[d0])
-        }
-        else {
-            console.log("Invalid day ")
-        }
+        //console.log(d0);
+        return d0;
+        
+        
     },
     /*
     *@purpose: convert the celsius to fahrenheit and vice versa of user choice conversion
@@ -1012,7 +1005,11 @@ module.exports = {
         }
         this.vendingMachine(amount, i + 1, notes);
     },
+    callFile() {
+        var fileStream = require('fs');
+        var f = fileStream.readFileSync('file.txt', 'utf8');
+        console.log(f);
+        var arr = f.split(' ');
+        return arr;
 }
-
-
-
+}

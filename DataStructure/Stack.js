@@ -11,6 +11,7 @@ class Stack {
         var stk = new stk[capacity];
     }
     push(ele) {
+        
         if (this.top == this.capacity - 1) {
             console.log("Stack Overflow");
             return;
@@ -35,7 +36,7 @@ class Stack {
         console.log(this.stk[this.top]);
     }
     getsize() {
-        console.log("size = ", this.size);
+        return this.size;
     }
 
     isEmpty() {
