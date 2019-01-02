@@ -635,6 +635,54 @@ module.exports = {
         }
     },
 
+    isAnagram(string1, string2) {
+      string1=string1+"";
+     string2=string2+"";
+        
+        if (string1.length != string2.length) {
+            return false;
+        }
+        var arr = [];
+        for (let index = 0; index < 36; index++) {
+            arr[index] = 0;
+
+        }
+        for (let index = 0; index < string1.length; index++) {
+            var ch = string1.charAt(index);
+            if (ch >= 'a' && ch <= 'z') {
+                var code = ch.charCodeAt(0);
+
+                arr[code - 97]++;
+            } else if (ch >= 'A' && ch <= 'Z') {
+                var code = ch.charCodeAt(0);
+                arr[code - 65]++;
+            } else {
+                var code = ch.charCodeAt(0);
+                arr[code - 22]++;
+            }
+            ch = string2.charAt(index);
+            if (ch >= 'a' && ch <= 'z') {
+                var code = ch.charCodeAt(0);
+
+                arr[code - 97]--;
+            } else if (ch >= 'A' && ch <= 'Z') {
+                var code = ch.charCodeAt(0);
+                arr[code - 65]--;
+            } else {
+                var code = ch.charCodeAt(0);
+                arr[code - 22]--;
+            }
+
+
+        }
+        for (let index = 0; index < 36; index++) {
+            if (arr[index] != 0) {
+                return false;
+            }
+        }
+        return true;
+},
+
     prime(res) {
         for (let index = 2; index < res; index++) {
             if (this.isPrime(index)) {
@@ -643,16 +691,18 @@ module.exports = {
         }
     },
 // method to check the prime numbers 
-    isPrime(index) {
-        var n = 2;
-        while (n <= index / 2) {
-            if (index % n == 0) {
-                return 0;
-            }
-            n++;
+    isPrime(number) {
+        if (number == 0 || number == 1) {
+            return false;
         }
-        return index;
-    },
+        for (let index = 2; index < number; index++) {
+            if (number % index == 0) {
+                return false;
+            }
+
+        }
+        return true;
+},
     /*
     *@purpose : To check the number wheather its palindrome or not 
     *@param   : num-user input number 

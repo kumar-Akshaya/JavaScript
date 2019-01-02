@@ -1,4 +1,4 @@
-var Utility=require('../../UtilityProgram/Utility');
+var Utility=require('../UtilityProgram/Utility');
 var readline=require('readline-sync');
 function prime()
 {

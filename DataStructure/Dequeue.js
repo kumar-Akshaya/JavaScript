@@ -2,83 +2,155 @@ class Dequeue
 {
     constructor()
     {
-        this.items=[];
         this.front=-1;
-        this.rear=-1;
-        this.size=0;
-    }
-}
-class MyDequeue
-{
-    constructor(capacity)
-    {
-        this.capacity=capacity;
-        var stk=new stk[capacity];
+        this.rear=0;
+        this.size=30;
+        this.arr=new Array(30);
     }
 
-    deque()
+    isFull()
     {
-        if(this.size==0)
+        if((this.front==0 &&this.rear==this.size-1 )||(this.rear+1==this.front))
         {
             return true;
         }
         return false;
     }
-    addFrontitem(item)
+    isEmpty()
     {
-        if(this.front==this.capacity-1)
+      return this.front=-1;
+    }
+
+    addFront(item)
+    {
+        if(this.isFull())
         {
-            console.log("Queue is full");
+            console.log("Queue overflow");
             return;
         }
-        else
+     if(this.front==-1)
         {
-            this.items[++this.front]=item;
-            this.size++;
-            return this.items;
+            this.front=0;
+            this.rear=0;
         }
-    }
-    addRearitem(item)
-    {
-        if(this.front==this.rear)
+        else if(this.front==0)
         {
-            console.log("Queue is full");
-            return;
-        }
-        else
-        {
-            this.rear=this.capacity-1;
-            this.size++;
-            this.items[this.rear--]=item;
-            this.items;
-        }
-    }
-    removeFront()
-    {
-        if(this.front=-1)
-        {
-            console.log("DeQue is empty");
-            return ;
+            this.front=this.arr.length-1;
         }
         else{
-            var ele=this.items[this.front++];
-             this.size--;
-            if(this.front>this.rear)
-            {
-                this.front=this.rear=-1;
-            }
-            return ele;
+            this.front--;
         }
+        this.arr[this.front]=item;
+    }
+    addRear(item)
+    {
+        if(this.isFull())
+        {
+            console.log("Queue overflow");
+            return;
+        }
+        if(this.front==-1)
+        {
+            this.front=0;
+            this.rear=0;
+        }
+        else if(this.front=this.arr.length-1)
+        {
+            this.rear=0;
+        }
+        else
+        {
+            this.rear++;
+        }
+        this.arr[this.rear]=item;
     }
     removeRear()
     {
-        if(this.rear=-1)
+        if(this.isEmpty())
         {
-            console.log("DeQue is empty");
-            return ;
+            console.log("Queue underflow");
+            return;
+        }
+        var item;
+         if(this.rear==this.front)
+        {
+        item=this.arr[this.rear];
+          this.rear=-1;
+          this.front=-1;
+        }
+        else if(this.rear==0)
+        {
+            item=this.arr[this.rear];
+            this.rear=this.arr.length-1;
         }
         else{
-            var ele1=this.items[]
+            item=this.arr[this.rear]
+            this.rear=this.rear--;
         }
+        return item;
     }
+    removeFront()
+    {
+        if(this.isEmpty())
+        {
+            console.log("Queue underflow");
+            return;
+        }
+        var item;
+        if(this.front==this.rear)
+        {
+            item=this.arr[this.front];
+            this.front=-1;
+            this.rear=-1;
+        }
+        else if(this.front==this.arr.length-1)
+        {
+          item=this.arr[this.front];
+          this.front--;
+        }
+        else
+        {
+            item=this.arr[this.front];
+            this.front++;
+        }
+        return item;
+    }
+    getFront()
+    {
+        if(this.isEmpty())
+        {
+            return -1;
+        }
+        return this.arr[this.front];
+    }
+    getRear()
+    {
+        if(this.isEmpty())
+        {
+            return -1;
+        }
+        return this.arr[this.rear];
+    }
+     
+    PalindromeChecker(str)
+    {
+        for(let i=0;i<str.length;i++)
+        {
+            this.addRear(str.charAt(i));
+        }
+        while(this.front!=this.rear && this.front<=this.rear)
+        {
+            if(this.getFront()!=this.getRear())
+            {
+                return false;
+            }
+            this.front++;
+            this.rear--;
+        }
+       return true;
+    }
+}
+
+module.exports={
+    Dequeue
 }

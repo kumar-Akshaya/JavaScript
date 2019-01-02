@@ -4,6 +4,8 @@ class Node
     {
         this.data=data;
         this.next=null;
+        this.size=0;
+       
     }
 }
 
@@ -14,31 +16,65 @@ class LinkedList
         this.head=null;
         this.lenght=0
     }
-
     
+
     insert(ele)
     {
         var node=new Node(ele);
         if(this.head==null)
         {
            this.head=node;
-           return false;
+           return true;
         }
-        t=this.head;
+         var t=this.head;
         while(t.next!=null)
         {
            t=t.next;
         }
+        this.size++;
         t.next=this.head;
         return true;
     }
 
-    insertFirst()
+    insertFirst(ele)
     {
        var node=new Node(ele);
+       this.size++;
         node.next=this.head;
-        head=node;
+        this.head=this.node;
         return true;
+    }
+    insertAt(element,index)
+    {
+        if(index>0 && index>this.size)
+        {
+            return false;
+        }
+        else{
+            var node = new Node(element,index);
+            var current, previous;
+            current=this.head;
+            if(index==0)
+            {
+                this.next=current;
+                this.head=node;
+            }
+            else{
+                current=this.head;
+                var num=0;
+                while(num<index)
+                {
+                    num++;
+                    previous=current;
+                    current=current.next;
+                }
+                node.next=current;
+                previous.next=this.head;
+                return true;
+            }
+            this.size++;
+        }
+
     }
     remove(ele)
     {
@@ -51,6 +87,7 @@ class LinkedList
               //return false;
               break;
           }
+          this.size--;
           t1.next=t.next;
           return t.data;
         }
@@ -66,9 +103,11 @@ class LinkedList
             {
                 break;
             }
+            this.size--;
             t1.next=t.next;
         }
     }
+
     show()
     {
       var  t=this.head;
@@ -78,11 +117,18 @@ class LinkedList
             if(t.next!=null)
             {
                 console.log("=>");
-                t=t.next;
+                
             }
+            t=t.next;
         }
     }
 }
 var lst=new LinkedList();
 lst.insert(20);
+lst.insert(30);
+lst.insert(40);
+lst.insert(50);
+lst.insertFirst(10);
+lst.getSize();
+lst.insertAt(10,1);
 lst.show();
