@@ -25,7 +25,7 @@ class Stack {
             console.log("Stack underFlow");
             return;
         }
-        this.size--;
+        this.size--;PalindromeChecker
         return this.stk[this.top--];
     }
     peek() {
