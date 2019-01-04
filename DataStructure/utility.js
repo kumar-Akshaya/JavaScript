@@ -7,7 +7,7 @@ if(err) {
     return console.log(err);
 }
 
-console.log("The file is saved!");
+//console.log("The file is saved!");
 }); 
     }
 }

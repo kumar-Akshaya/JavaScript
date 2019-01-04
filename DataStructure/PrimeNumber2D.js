@@ -10,15 +10,15 @@ module.exports = {
                     array[i][j] = prime;
                     j++;
                 }
-                else{
-                j = 1;
-                range = range + 100;
-                i++;
-                array[i][j]=prime;
+                else {
+                    j = 1;
+                    range = range + 100;
+                    i++;
+                    array[i][j] = prime;
                 }
             }
         }
-    
+
         console.log("The prime numbers are presents in the given range ");
         for (var i = 0; i < array.length; i++) {
             for (var j = 0; j < array[i].length; j++) {

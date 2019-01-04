@@ -1,4 +1,5 @@
 
+
 class Stack {
     constructor() {
         this.stk = [];
@@ -11,7 +12,7 @@ class Stack {
         var stk = new stk[capacity];
     }
     push(ele) {
-        
+
         if (this.top == this.capacity - 1) {
             console.log("Stack Overflow");
             return;
@@ -25,7 +26,7 @@ class Stack {
             console.log("Stack underFlow");
             return;
         }
-        this.size--;PalindromeChecker
+        this.size--;
         return this.stk[this.top--];
     }
     peek() {
@@ -57,9 +58,20 @@ class Stack {
         }
         console.log(string);
     }
+    reveseStack(stk) {
+        var newstack = new Stack;
+        var n = this.getsize();
+        for (let index = 0; index < n; index++) {
+            newstack.push(this.pop());
+        }
+        return newstack;
+
+    }
+
+
 }
 
-module.exports={
+module.exports = {
     Stack
 }
 // var st = new Stack();

@@ -18,7 +18,7 @@ class Dequeue
     }
     isEmpty()
     {
-      return this.front=-1;
+      return this.front==-1;
     }
 
     addFront(item)
@@ -54,7 +54,7 @@ class Dequeue
             this.front=0;
             this.rear=0;
         }
-        else if(this.front=this.arr.length-1)
+        else if(this.front==this.arr.length-1)
         {
             this.rear=0;
         }
@@ -138,8 +138,11 @@ class Dequeue
         {
             this.addRear(str.charAt(i));
         }
-        while(this.front!=this.rear && this.front<=this.rear)
+        console.log(this.front);
+        console.log(this.rear);
+        while(this.front!=this.rear && this.front<this.rear)
         {
+            
             if(this.getFront()!=this.getRear())
             {
                 return false;

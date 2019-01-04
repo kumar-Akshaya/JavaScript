@@ -21,6 +21,7 @@ function Queue() {
             else if (ans == 2) {
                 var amount = readline.question("Enter total amount do you want to Withdraw  ");
                 var get = req.enque(Number(-amount));
+                
                 flag= true;
                 //console.log(req.show());
             }

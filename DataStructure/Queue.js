@@ -65,6 +65,28 @@ class Queue {
        }
        return false; 
    }
+   displayAnagram(){
+    if(this.head==null){
+        console.log("No element present ");
+        return;
+    }
+    console.log(" The numbers which are Prime and anagram ");
+    var pre=this.head;
+    var curr=pre.next;
+    var dis=require('util');
+
+    while(curr){
+           dis.print(pre.element);
+        if(pre.next!=null){
+            dis.print("  ")
+        }
+        dis.print(curr.element);
+        dis.print(',');
+        pre=curr;
+        curr=curr.next;
+    }
+
+}
 
 } 
 
