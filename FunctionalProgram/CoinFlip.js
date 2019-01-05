@@ -1,4 +1,4 @@
-var Utility=require('/home/bridgeit/Akshaya/Akshaya JS/UtilityProgram/Utility');
+var Utility=require('../UtilityProgram/Utility');
 var rl=Utility.input();
 
 function CoinFlip(){

@@ -1,10 +1,10 @@
 var utility=require('../UtilityProgram/Utility');
-var access=require('../DataStructure/Stack');
+var access=require('../DataStructure/StackLinked');
 var take=require('util');
 function ReverseAnagram()
 {
   var arr=[];
-  for(let i=0;i<10;i++)
+  for(let i=0;i<100;i++)
   {
       if(utility.isPrime(i))
       {
@@ -13,7 +13,7 @@ function ReverseAnagram()
   }
   
   var range=100, k=0;
-  var stk=new access.Stack;
+  var stk=new access.StackLinkedList;
   for(let i=0;i<arr.length;i++)
   {
       for(let j=0;j<arr.length;j++)
@@ -34,6 +34,6 @@ function ReverseAnagram()
         take.print(stk.pop(i));
     }
     
-
+  console.log('\n\n');
 }
 ReverseAnagram();
