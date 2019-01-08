@@ -1,0 +1,14 @@
+{
+    "stock": [
+        {
+            "stockname": "bridgelab",
+            "no_of_share": "100",
+            "share_price": "2000"
+        },
+        {
+            "stockname": "Jspiders",
+            "no_of_share": "200",
+            "share_price": "2000"
+        }
+    ]
+}

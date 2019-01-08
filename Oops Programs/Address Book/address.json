@@ -1,0 +1,36 @@
+{
+    "person": [
+        {
+            "First_name": "Sachin",
+            "Last_name": "Chouksey",
+            "Contact": "8553424311",
+            "Address": "Bhopal sher",
+            "State": "Mp",
+            "Zip": "480066"
+        },
+        {
+            "First_name": "Honey",
+            "Last_name": "Singh",
+            "Contact": "9553424320",
+            "Address": "Banglore",
+            "State": "Karnataka",
+            "Zip": "560066"
+        },
+        {
+            "First_name": "Nanditt",
+            "Last_name": "Pual",
+            "Contact": "9606256397",
+            "Address": "Bengal",
+            "State": "West-Bengal",
+            "Zip": "396098"
+        },
+        {
+            "First_name": "Akshaya",
+            "Last_name": "MI",
+            "Contact": "9606256397",
+            "Address": "Bangalore",
+            "State": "Karnataka",
+            "Zip": "560079"
+        }
+    ]
+}

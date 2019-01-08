@@ -1,3 +1,0 @@
-Hello "<<name>>", we have your full name as "<<full name>>" in our system.
-your contact number is 91"xxxxxxxxxx"
-please, let us known that incase of any clarification Thank you BridgeLab "xx/xx/xxxx"

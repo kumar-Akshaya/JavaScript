@@ -1,3 +1,11 @@
+/*
+ * find out the whether given two strings are Anagram or not
+ * and print the Message on the output Screen
+ * 
+ * @author : AkshayKumar
+ * @version : 1.0
+ * @since 12/12/2018
+ */
 var Utility=require('../UtilityProgram/Utility');
 var readline=require('readline-sync');
 function anagram()
