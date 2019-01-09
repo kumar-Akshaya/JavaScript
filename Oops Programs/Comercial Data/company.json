@@ -1,0 +1,29 @@
+{
+    "company" : [{
+             "name"    : "Teck mahindra",
+             "symbol"  : "A",
+             "no_of_shares"  : "100",
+             "share_per_price" : "1700"     
+            },
+            {
+            "name " : "Accenture",
+            "symbol": "B",
+            "shares": "120",
+            "share_per_price" : "1700" 
+            },
+            {
+            "name"  : "Infosys",
+            "symbol" : "C",
+            "shares" : "250",
+            "share_per_price" : "1700" 
+            },
+            {
+            "name"  : "Bridge lab",
+            "symbol" : "D",
+            "shares" : "130",
+            "share_per_price" : "1700" 
+            }]
+            
+     
+    
+}
