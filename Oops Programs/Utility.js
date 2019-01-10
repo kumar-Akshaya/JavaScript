@@ -1,5 +1,6 @@
 var filestream = require('fs');
 var readline = require('readline-sync');
+
 module.exports = {
     inventory(object) {
         var rice = object.rice;
@@ -7,20 +8,21 @@ module.exports = {
         var pulses = object.pulses;
 
         for (var key in rice) {
-
+            console.log('\n');
             console.log("The total price of ", rice[key].rice_name, " is ", rice[key].weight * rice[key].price);
         }
 
         for (var key in wheat) {
-            console.log('\n\n');
+            console.log('\n');
 
             console.log("The total price of ", wheat[key].wheat_name, " is ", wheat[key].weight * wheat[key].price);
         }
 
         for (var key in pulses) {
-            console.log('\n\n');
+            console.log('\n');
             //console.log(pulses[key]);
-            console.log("the total price of ", pulses[key].pulses_name, " is ", pulses[key].weight * pulses[key].price);
+            
+            console.log("the total price of ", pulses[key].pulse_name, " is ", pulses[key].weight * pulses[key].price);
         }
     },
 
@@ -54,8 +56,63 @@ module.exports = {
     },
 
     deckOfCards() {
-        var queue = require('../DataStructure/Queue');
+        var queue = require('../DataStructure/QueueUsingLinkedList');
+        var sort=require('../UtilityProgram/Utility');
         var take = require('util');
+        var person1 = new queue.QueueLinked;
+        var person2 = new queue.QueueLinked;
+        var person3 = new queue.QueueLinked;
+        var person4 = new queue.QueueLinked;
+        var suit = ["♣️", "🔸", "❤️", "♠️"];
+        var rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"];
+        var deck = new Array();
+        var n = suit.length * rank.length;
+        for (let i = 0; i < suit.length; i++) {
+            for (let j = 0; j < rank.length; j++) {
+                var temp = "";
+                deck.push(suit[i]+rank[j] + "");
+            }
+        }
+
+        for (let i = 0; i < n; i++) {
+            var random = parseInt(Math.random() * deck.length)
+
+            var temp = deck[i];
+            deck[i] = deck[random];
+            deck[random] = temp;
+        }
+        var x = 0, y = 9;
+        var array = [];
+     for (let i = 0; i < deck.length; i++) {
+        if(i<13){
+            person1.enqueue(deck[i]);
+        }else if(i<26){
+            person2.enqueue(deck[i]);
+        }else if(i<39){
+            person3.enqueue(deck[i]);
+        }else{
+            person4.enqueue(deck[i]);
+        }
+     }
+     array=person1.getData().split(' ');
+     array2=person2.getData().split(' ');
+     array3=person3.getData().split(' ');
+     array4=person4.getData().split(' ');
+     sort.insertion(array);
+     sort.insertion(array2);
+     sort.insertion(array3);
+     sort.insertion(array4);
+     console.log("Player 1 have this cards :  "+array.join());
+     console.log("Player 2 have this cards :  "+array2.join());
+     console.log("Player 3 have this cards :  "+array3.join());
+     console.log("Player 4 have this cards :  "+array4.join());
+     
+    },
+    
+
+    deck2D() {
+        var sort=require('../UtilityProgram/Utility');
+        var queue = require('../DataStructure/Queue');
         var queue = new queue.Queue;
         var suit = ["♣️", "🔸", "❤️", "♠️"];
         var rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"];
@@ -75,28 +132,20 @@ module.exports = {
             deck[i] = deck[random];
             deck[random] = temp;
         }
-        var x = 0, y = 9;
-        var array = [];
-        for (let i = 0; i < 4; i++) {
-            var array1 = [];
-            for (let j = x; j < y; j++) {
-                array1.push(deck[j]);
-            }
-            array1 = array1.sort();
-            for (let i = 0; i < array.length; i++) {
-                queue.enque(i);
-                queue.show();
-            }
-            console.log("cards distibuted to player " + (i + 1) + " is ");
-            take.print("[" + array1 + "]");
-            console.log('\n');
-            array.push(array1);
-            x = x + 9;
-            y = y + 9;
+        var arr = [[], [], [], []];
+        var x = 0, y = 9
 
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 9; j++) {
+                arr[i][j] = deck[j + x];
+            }
+            x = x + 9;
 
         }
+        console.log(arr);
+
     },
+
     clinicManagement(data) {
         var doctor = data.Doctor;
         var patient = data.Patient;
@@ -162,7 +211,7 @@ module.exports = {
                     //this.appointment();
                 }
                 else if (inf == 3) {
-                    var mob = readline.question("Enter the mobile number of Patient ");
+                    var mob = readline.question("Enter the mobile number of Patient "); deck2D
                     for (var key in patient) {
                         if (patient[key].Contact_number == mob) {
                             console.log("----your Patient information----");
@@ -368,7 +417,7 @@ module.exports = {
     },
     update(data) {
         let ans = readline.question("Enter the  name of the exsting person ");
-        let anss = readline.question("Enter the  number of exsting person");
+       
         for (let i = 0; i < data.person.length; i++) {
             filestream.writeFileSync('address.json', JSON.stringify(data));
             if (data.person[i].First_name == ans || data.person[i].Contact == anss) {
@@ -417,13 +466,13 @@ module.exports = {
         this.update(data);
     },
 
-    commercial(data, data1) {
+    commercial(data, data1, data2) {
         var answer = readline.question("Press.. \n 1. create \n 2. open \n 3. edit \n 4. exit  ");
         if (answer == 1) {
-            this.create(data, data1);
+            this.create(data, data1, data2);
         }
         else if (answer == 2) {
-            this.open(data,data1);
+            this.open(data, data1, data2);
         }
         else if (answer == 3) {
             this.edit(data);
@@ -438,7 +487,7 @@ module.exports = {
         }
     },
 
-    create(data, data1) {
+    create(data, data1, data2) {
         var ask = readline.question(" Are you a exsting user \n if yes press 1. \n if No press 2.  ");
         if (ask == 1) {
             if (data1.user.length == 0) {
@@ -447,36 +496,32 @@ module.exports = {
             }
             else {
                 var que = readline.question(" Enter your existing id ");
-               
+
                 for (let i = 0; i < data1.user.length; i++) {
                     if (data1.user[i].id == que) {
-                        
-                        for(var key in data1.user){
-                            console.log(data1.user[key]);
-                            this.create(data,data1);
-                        }
+                        console.log(data1.user[i]);
+                        this.purchase(data, data1, data2);
+
                     }
                 }
 
-            }open(data,data1)
+            }
         }
-        else if(ask==2)
-        {
-            let nam=readline.question(" Enter your name ");
-            let idn=readline.question(" Enter the user id ");
-            let amo=readline.question(" Enter your amount ");
-            let shar=readline.question(" Enter your shares ");
+        else if (ask == 2) {
+            let nam = readline.question(" Enter your name ");
+            let idn = readline.question(" Enter the user id ");
+            let amo = readline.question(" Enter your amount ");
+            let shar = readline.question(" Enter your shares ");
             data1.user.push({
-                name : nam,
-                id : idn,
-                symbol : "",
-                amount : amo,
-                shares : shar
+                name: nam,
+                id: idn,
+                symbol: "",
+                amount: amo,
+                shares: shar
             })
-            var read=readline.question(" To save information Enter 1.");
-            if(read==1)
-            {
-                filestream.writeFileSync("customer.json",JSON.stringify(data1));
+            var read = readline.question(" To save information Enter 1.");
+            if (read == 1) {
+                filestream.writeFileSync("customer.json", JSON.stringify(data1));
                 console.log(" Your information added ");
             }
             else {
@@ -485,47 +530,112 @@ module.exports = {
 
         }
     },
-    open(data,data1)
-    {
-        let read=readline.question(" Enter your customer ID ");
-        var flag=true;
-        if(flag)
-        for( let i=0;i<data1.user.length;i++)
-        {
-            if(data1.user[i].id==read)
-            {
-                    console.log(data1.user[i]);
-                    flag=true;
-                   this.purchase(data,data1);
-            }
-            else{
-                flag=false
-            } for (let i = 0; i < data1.user.length; i++) {
-                if (data1.user[i].id == que) {
+    open(data, data1, data2) {
+        let read = readline.question(" Enter your customer ID ");
+        var flag = true;
+        if (flag)
+            for (let i = 0; i < data1.user.length; i++) {
+                if (data1.user[i].id == read) {
                     
-        }
-        if(flag==false)
-        {
-            console.log(" No users found ");
-        }
-    }
-    purchase(data,data1)
-    {
-    let ask=readline.question(" press \n 1. buy shares \n 2. sell shares \n 3. add money \n 4. display  \n 5. exit ");
-     if(ask==1)
-     {
-         for(var key in data.company)
-         {
-             console.log(" Company details ")
-             console.log(data.company[key]);
-         }
-         let que=readline.question(" Please, Enter your id ");
-         for (let i = 0; i < data1.user.length; i++) {
-            if (data1.user[i].id == que) {
-                console.log(data1.user[i]);
+                    console.log(data1.user[i]);
+                    flag = true;
+                    this.purchase(data, data1, data2);
+                }
+                else {
+                    flag = false
+                    //     } for (let i = 0; i < data1.user.length; i++) {
+                    //         if (data1.user[i].id == read) {
+
+                    // }
+                    if (flag == false) {
+                        console.log(" No users found ");
+                    }
+                }
             }
+    },
+    purchase(data, data1, data2) {
+        let ask = readline.question(" press \n 1. buy shares \n 2. sell shares \n 3. add money \n 4. display  \n 5. exit ");
+        if (ask == 1) {
+            for (var key in data.company) {
+                console.log(" Company details ")
+                console.log(data.company[key]);
+            }
+            let que = readline.question(" Please, Enter your id ");
+            var flag = false;;
+            for (let i = 0; i < data1.user.length; i++) {
+                if (data1.user[i].id == que) {
+                    var useramt=data1.user[i].amount;
+                    var cmpshare=data.company[i].shares;
+                    var found = data1.user[i];
+                    flag = true;
+                    //console.log(data1.user[i]);
+                }
+                else {
+                    flag = false;
+                    //console.log("No such id found ");
+                }
+            }
+            if (flag == false) {
+                console.log(found);
+            }
+            else {
+                console.log("No such id found ");
+            }
+            let read = readline.question(" Enter the company symbol ");
+            for (let i = 0; i < data.company.length; i++) {
+                if (data.company[i].symbol == read) {
+                    var compamt=data.company[i].share_per_price;
+                    var cmpshare=data.company[i].shares;
+                    var get = data.company[i];
+                }
+            }
+
+let buy = readline.question(" Enter how many shares do you want to buy from this company ");
+        for (let i=0;i<buy;i++)
+        {
+            let que = readline.question(" Please, Enter your id ");
+            var flag = false;;
+            for (let i = 0; i < data1.user.length; i++) {
+                if (data1.user[i].id == que) {
+                    var useramt=data1.user[i].amount;
+                    var cmpshare=data.company[i].shares;
+                    var found = data1.user[i];
+           
         }
-         let read=readline.question(" Enter how many shares do you want to buy ");
+
+        }
     }
+}
+        else if(ask==3)
+        {
+            let que = readline.question(" Please, Enter your id ");
+            var flag;;
+            for (let i = 0; i < data1.user.length; i++) {
+                if (data1.user[i].id == que) {
+                    var found = data1.user[i];
+                    flag=true;
+                }
+                else{
+                    flag=false;
+                }
+        }
+       if(flag==true)
+       {
+           var amoun=readline.question(" Enter your amount do you want to add in account ")
+           for(let i=0;i<data1.user.length;i++)
+           {
+               if(data1.user[i].id==que)
+               {
+                   data1.user.amount=amoun;
+               }
+           }
+           filestream.writeFileSync("customer.json", JSON.stringify(data1));
+                console.log(" Your amount is  added ");
+       }
+       else{
+           console.log(" No user found");
+       }
     }
+
+}
 }   

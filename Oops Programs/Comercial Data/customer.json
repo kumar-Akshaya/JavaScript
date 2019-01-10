@@ -13,6 +13,13 @@
             "symbol": "",
             "amount": "2000",
             "shares": "10"
+        },
+        {
+            "name": "akshaya",
+            "id": "236",
+            "symbol": "",
+            "amount": "1000",
+            "shares": "6"
         }
     ]
 }
